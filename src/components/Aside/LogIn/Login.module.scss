@@ -1,0 +1,16 @@
+$main-color: #fdf0ec;
+$text-color: #81290e;
+
+.login {
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 400px;
+  padding: 8px 77px 8px 28px;
+  background-color: $main-color;
+  color: $text-color;
+  font-weight: 600;
+  height: 40px;
+}

@@ -1,0 +1,26 @@
+$main-color: #2563dc;
+$secondary-color: #eef2fc;
+
+nav {
+  display: flex;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-weight: 600;
+
+    li {
+      max-width: 200px;
+      width: 100%;
+      padding: 8px 46px 8px 28px;
+      background-color: $secondary-color;
+      border-radius: 10px;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  }
+}

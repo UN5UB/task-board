@@ -1,0 +1,16 @@
+.todo {
+  max-width: 440px;
+  width: 100%;
+  background-color: #eef2fc;
+  padding: 12px;
+  border-radius: 12px;
+  h3 {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #14367b;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+}

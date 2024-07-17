@@ -1,0 +1,10 @@
+main {
+  width: 100%;
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+    padding: 0 65px;
+    gap: 25px;
+  }
+}
