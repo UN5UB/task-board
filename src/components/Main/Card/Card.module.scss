@@ -13,4 +13,57 @@
       font-weight: 600;
     }
   }
+
+  .description {
+    p {
+      max-width: 400px;
+      height: auto;
+      word-break: break-all;
+      line-height: 120%;
+    }
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    input {
+      border: transparent;
+      border-radius: 10px;
+      box-shadow: #d3d3d3 0px 0px 10px;
+      padding: 0 10px;
+      height: 30px;
+      font-family: "Poppins", sans-serif;
+
+      &:focus,
+      &:active {
+        outline: none;
+      }
+    }
+    textarea {
+      border: transparent;
+      border-radius: 10px;
+      box-shadow: #d3d3d3 0px 0px 10px;
+      padding: 0 10px;
+      height: 30px;
+      font-family: "Poppins", sans-serif;
+      resize: none;
+      &:focus,
+      &:active {
+        outline: none;
+      }
+    }
+    .description {
+      height: 120px;
+      padding-bottom: 80px;
+    }
+  }
+  .save {
+    background-color: #2563dc;
+    color: #fff;
+    border-radius: 10px;
+    height: 45px;
+    width: 100%;
+    margin-top: 30px;
+  }
 }
