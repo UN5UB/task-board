@@ -48,20 +48,9 @@ const taskSlice = createSlice({
         state[index].status = action.payload.status;
       }
     },
-    reorderTasks: (
-      state,
-      action: PayloadAction<{
-        sourceIndex: number;
-        destinationIndex: number;
-      }>
-    ) => {
-      const { sourceIndex, destinationIndex } = action.payload;
-      const [movedTask] = state.splice(sourceIndex, 1);
-      state.splice(destinationIndex, 0, movedTask);
-    },
   },
 });
 
-export const { addTask, updateTask, removeTask, setTaskStatus, reorderTasks } =
+export const { addTask, updateTask, removeTask, setTaskStatus } =
   taskSlice.actions;
 export default taskSlice.reducer;

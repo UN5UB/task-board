@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { removeTask, updateTask } from "../../../redux/slices/taskSlice";
 import styles from "./Card.module.scss";
 import { Todo as TodoType } from "../../../redux/slices/taskSlice";
+import { Draggable } from "react-beautiful-dnd";
 
 interface CardProps {
   task: TodoType;
@@ -32,6 +33,7 @@ export const Card: React.FC<CardProps> = ({ task }) => {
             <input
               className={styles.title}
               type="text"
+              maxLength={20}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />

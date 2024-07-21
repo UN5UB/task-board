@@ -55,6 +55,7 @@ export const NewTask: React.FC<NewTaskProps> = ({ handleClick }) => {
         <input
           className={styles.title}
           value={title}
+          maxLength={20}
           onChange={(e) => setTitle(e.target.value)}
         />
         <h3>Description</h3>
