@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { removeTask, updateTask } from "../../../redux/slices/taskSlice";
 import styles from "./Card.module.scss";
 import { Todo as TodoType } from "../../../redux/slices/taskSlice";
-import { Draggable } from "react-beautiful-dnd";
 
 interface CardProps {
   task: TodoType;

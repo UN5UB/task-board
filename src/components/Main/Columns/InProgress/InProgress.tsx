@@ -4,6 +4,7 @@ import styles from "./InProgress.module.scss";
 import { Todo as TodoType } from "../../../../redux/slices/taskSlice";
 import { useDispatch } from "react-redux";
 import { updateTask } from "../../../../redux/slices/taskSlice";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 
 interface InProgressProps {
   tasks: TodoType[];
@@ -11,20 +12,39 @@ interface InProgressProps {
 
 export const InProgress: React.FC<InProgressProps> = ({ tasks }) => {
   const dispatch = useDispatch();
-  const inProgressTasks = tasks.filter((task) => task.completed && !task.done);
+  const inProgressTasks = tasks.filter((task) => task.status === "inProgress");
 
   const handleUpdate = (updatedTask: TodoType) => {
     dispatch(updateTask(updatedTask));
   };
 
   return (
-    <div className={styles.progress}>
-      <h3>
-        <img src="icons/Main/progress.svg" alt="progress" /> In Progress
-      </h3>
-      {inProgressTasks.map((task) => (
-        <Card task={task} onUpdate={handleUpdate} />
-      ))}
-    </div>
+    <Droppable droppableId="inProgress" direction="vertical">
+      {(provided) => (
+        <div
+          className={styles.progress}
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+        >
+          <h3>
+            <img src="icons/Main/progress.svg" alt="progress" /> In Progress
+          </h3>
+          {inProgressTasks.map((task, index) => (
+            <Draggable key={task.id} draggableId={task.id} index={index}>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                >
+                  <Card task={task} onUpdate={handleUpdate} />
+                </div>
+              )}
+            </Draggable>
+          ))}
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
   );
 };
