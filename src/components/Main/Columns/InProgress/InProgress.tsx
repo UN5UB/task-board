@@ -1,13 +1,14 @@
 import React from "react";
 import { Card } from "../../Card/Card";
 import styles from "./InProgress.module.scss";
-import { Todo as TodoType } from "../../../../redux/slices/taskSlice";
-import { useDispatch } from "react-redux";
+import { Task } from "../../../../types/taskTypes";
 import { updateTask } from "../../../../redux/slices/taskSlice";
+import { useDispatch } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 interface InProgressProps {
-  tasks: TodoType[];
+  tasks: Task[];
+  searchValue: string;
 }
 
 export const InProgress: React.FC<InProgressProps> = ({
@@ -17,7 +18,7 @@ export const InProgress: React.FC<InProgressProps> = ({
   const dispatch = useDispatch();
   const inProgressTasks = tasks.filter((task) => task.status === "inProgress");
 
-  const handleUpdate = (updatedTask: TodoType) => {
+  const handleUpdate = (updatedTask: Task) => {
     dispatch(updateTask(updatedTask));
   };
 

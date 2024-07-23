@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import { FC } from "react";
 import style from "./Headrer.module.scss";
 import { Logo } from "./Logo/Logo";
 
-export const Header = ({ searchValue, setSearchValue }) => {
+interface Props {
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+}
+
+export const Header: FC<Props> = ({ searchValue, setSearchValue }) => {
   return (
     <header className={style.header}>
       <div className={style.logo}>

@@ -11,6 +11,7 @@ import { setTaskStatus, reorderTasks } from "../../redux/slices/taskSlice";
 
 interface MainProps {
   handleClick: () => void;
+  searchValue: any;
 }
 
 export const Main: React.FC<MainProps> = ({ handleClick, searchValue }) => {

@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeTask, updateTask } from "../../../redux/slices/taskSlice";
 import styles from "./Card.module.scss";
-import { Todo as TodoType } from "../../../redux/slices/taskSlice";
+import { Task as TodoType } from "../../../types/taskTypes";
 
 interface CardProps {
   task: TodoType;
+  onUpdate: (updatedTask: TodoType) => void;
 }
 
 export const Card: React.FC<CardProps> = ({ task }) => {
   const dispatch = useDispatch();
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState(task.title);
-  const [description, setDescription] = useState(task.description);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [title, setTitle] = useState<any>(task.title);
+  const [description, setDescription] = useState<any>(task.description);
 
   const handleSave = () => {
     dispatch(updateTask({ ...task, title, description }));

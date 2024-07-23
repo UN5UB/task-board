@@ -1,12 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  status: "todo" | "inProgress" | "done";
-}
+import { Task } from "../../types/taskTypes";
 
 interface ReorderPayload {
   sourceIndex: number;
