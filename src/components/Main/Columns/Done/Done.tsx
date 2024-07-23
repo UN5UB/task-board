@@ -10,7 +10,7 @@ interface DoneProps {
   tasks: TodoType[];
 }
 
-export const Done: React.FC<DoneProps> = ({ tasks }) => {
+export const Done: React.FC<DoneProps> = ({ tasks, searchValue }) => {
   const dispatch = useDispatch();
   const doneTasks = tasks.filter((task) => task.status === "done");
 
@@ -29,19 +29,23 @@ export const Done: React.FC<DoneProps> = ({ tasks }) => {
           <h3>
             <img src="icons/Main/done.svg" alt="done" /> Done
           </h3>
-          {doneTasks.map((task, index) => (
-            <Draggable key={task.id} draggableId={task.id} index={index}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                >
-                  <Card task={task} onUpdate={handleUpdate} />
-                </div>
-              )}
-            </Draggable>
-          ))}
+          {doneTasks
+            .filter((task) =>
+              task.title.toLowerCase().includes(searchValue.toLowerCase())
+            )
+            .map((task, index) => (
+              <Draggable key={task.id} draggableId={task.id} index={index}>
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <Card task={task} onUpdate={handleUpdate} />
+                  </div>
+                )}
+              </Draggable>
+            ))}
           {provided.placeholder}
         </div>
       )}

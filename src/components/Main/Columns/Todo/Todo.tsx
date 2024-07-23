@@ -10,7 +10,7 @@ interface TodoProps {
   tasks: TodoType[];
 }
 
-export const Todo: React.FC<TodoProps> = ({ tasks }) => {
+export const Todo: React.FC<TodoProps> = ({ tasks, searchValue }) => {
   const dispatch = useDispatch();
   const todoTasks = tasks.filter((task) => task.status === "todo");
 
@@ -29,19 +29,23 @@ export const Todo: React.FC<TodoProps> = ({ tasks }) => {
           <h3>
             <img src="icons/Main/todo.svg" alt="todo" /> To do
           </h3>
-          {todoTasks.map((task, index) => (
-            <Draggable key={task.id} draggableId={task.id} index={index}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                >
-                  <Card task={task} onUpdate={handleUpdate} />
-                </div>
-              )}
-            </Draggable>
-          ))}
+          {todoTasks
+            .filter((task) =>
+              task.title.toLowerCase().includes(searchValue.toLowerCase())
+            )
+            .map((task, index) => (
+              <Draggable key={task.id} draggableId={task.id} index={index}>
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <Card task={task} onUpdate={handleUpdate} />
+                  </div>
+                )}
+              </Draggable>
+            ))}
           {provided.placeholder}
         </div>
       )}

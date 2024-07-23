@@ -13,7 +13,7 @@ interface MainProps {
   handleClick: () => void;
 }
 
-export const Main: React.FC<MainProps> = ({ handleClick }) => {
+export const Main: React.FC<MainProps> = ({ handleClick, searchValue }) => {
   const dispatch = useDispatch();
   const tasks = useSelector((state: RootState) => state.todos);
 
@@ -44,9 +44,9 @@ export const Main: React.FC<MainProps> = ({ handleClick }) => {
       <Tasks handleClick={handleClick} />
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={styles.row}>
-          <Todo tasks={tasks} />
-          <InProgress tasks={tasks} />
-          <Done tasks={tasks} />
+          <Todo searchValue={searchValue} tasks={tasks} />
+          <InProgress searchValue={searchValue} tasks={tasks} />
+          <Done searchValue={searchValue} tasks={tasks} />
         </div>
       </DragDropContext>
     </main>

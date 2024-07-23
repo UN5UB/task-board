@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleOpen } from "./redux/slices/openSlice";
 import { RootState } from "./redux/store";
@@ -19,12 +19,14 @@ function App() {
     dispatch(toggleOpen(!isOpen));
   };
 
+  const [searchValue, setSearchValue] = useState("");
+
   return (
     <div className={styles.wrapper}>
-      <Header />
+      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className={styles.container}>
-        <Aside />
-        <Main handleClick={handleClick} />
+        {/* <Aside /> */}
+        <Main searchValue={searchValue} handleClick={handleClick} />
         {isOpen && <NewTask handleClick={handleClick} />}
       </div>
     </div>

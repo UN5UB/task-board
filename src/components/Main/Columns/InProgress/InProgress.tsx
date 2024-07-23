@@ -10,7 +10,10 @@ interface InProgressProps {
   tasks: TodoType[];
 }
 
-export const InProgress: React.FC<InProgressProps> = ({ tasks }) => {
+export const InProgress: React.FC<InProgressProps> = ({
+  tasks,
+  searchValue,
+}) => {
   const dispatch = useDispatch();
   const inProgressTasks = tasks.filter((task) => task.status === "inProgress");
 
@@ -29,19 +32,23 @@ export const InProgress: React.FC<InProgressProps> = ({ tasks }) => {
           <h3>
             <img src="icons/Main/progress.svg" alt="progress" /> In Progress
           </h3>
-          {inProgressTasks.map((task, index) => (
-            <Draggable key={task.id} draggableId={task.id} index={index}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                >
-                  <Card task={task} onUpdate={handleUpdate} />
-                </div>
-              )}
-            </Draggable>
-          ))}
+          {inProgressTasks
+            .filter((task) =>
+              task.title.toLowerCase().includes(searchValue.toLowerCase())
+            )
+            .map((task, index) => (
+              <Draggable key={task.id} draggableId={task.id} index={index}>
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <Card task={task} onUpdate={handleUpdate} />
+                  </div>
+                )}
+              </Draggable>
+            ))}
           {provided.placeholder}
         </div>
       )}
