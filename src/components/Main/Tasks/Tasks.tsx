@@ -1,7 +1,10 @@
-import React from "react";
 import styles from "./Tasks.module.scss";
 
-export const Tasks = ({ handleClick }) => {
+interface Props {
+  handleClick: () => void;
+}
+
+export const Tasks: React.FC<Props> = ({ handleClick }) => {
   return (
     <div className={styles.tasks}>
       <h2>Tasks</h2>
